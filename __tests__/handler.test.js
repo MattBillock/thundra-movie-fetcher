@@ -12,6 +12,7 @@ test('correct response code is returned', () => {
 test('forced failure in CI for Thundra demonstration', () => {
     if(process.env.APP_ENV == "CI") {
         if(Math.random() < .2) {
+            console.log("FORCE FAILING");
             expect(false).toBe(true);
         }
     }
