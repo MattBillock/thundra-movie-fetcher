@@ -16,7 +16,7 @@ module.exports.parseResponse = async (event) => {
 };
   
 module.exports.fetchMovie = async (event) => {
-  return httprequest().then((data) => {
+  return this.httprequest().then((data) => {
     const response = {
       statusCode: 200,
       body: data,
@@ -25,7 +25,7 @@ module.exports.fetchMovie = async (event) => {
   });
 };
 
-function httprequest() {
+module.exports.httprequest = async (event) => {
   return new Promise((resolve, reject) => {
     var api_path = `/3/movie/now_playing?api_key=${process.env.TMDB_API_KEY}`;
   
