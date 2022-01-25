@@ -14,16 +14,22 @@ jobs:
         node-version: [14.x]
     steps:
     - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
+    # Specify your npm / yarn install step
+    - name: Set up Node 12
+      uses: actions/setup-node@v2
       with:
-        node-version: ${{ matrix.node-version }}
-    - run: npm ci
-    - uses: actions/checkout@v2
-    - name: Install modules
-      run: yarn
-    - name: Run tests
-      run: yarn run jest
+        node-version: '12'
+    - run: npm install
+    - name: Thundra Foresight JS Instrumentation
+      uses: thundra-io/thundra-foresight-js-action@v1
+      with:
+        apikey: 6edff4e8-5151-4c39-a904-555b1738a18e
+        project_id: 03071a37-9231-48a6-b1d7-e9dd825aca0f
+        # Modify or remove the command
+        # Default is "npm test" 
+        # Modify according to your test script.
+        # ex: yarn run test:integration || npm run test:e2e
+        command: npm run test:all
     - name: serverless deploy
       uses: serverless/github-action@master
       with:
