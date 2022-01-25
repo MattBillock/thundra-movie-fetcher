@@ -23,8 +23,8 @@ jobs:
     - name: Thundra Foresight JS Instrumentation
       uses: thundra-io/thundra-foresight-js-action@v1
       with:
-        apikey: 6edff4e8-5151-4c39-a904-555b1738a18e
-        project_id: 03071a37-9231-48a6-b1d7-e9dd825aca0f
+        apikey: ${{ secrets.THUNDRA_API_KEY }}
+        project_id: ${{ secrets.THUNDRA_PROJECT_ID }}
         # Modify or remove the command
         # Default is "npm test" 
         # Modify according to your test script.
